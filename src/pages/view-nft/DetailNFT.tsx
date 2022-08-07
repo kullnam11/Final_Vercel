@@ -244,10 +244,10 @@ const DetailNFT: React.FC = () => {
             </Center>
             <Box>
               <LinkOverlay href="#">
-                <HStack className="v-d-box-image-external-link">
+                {/* <HStack className="v-d-box-image-external-link">
                   <Text>View on OpenSea</Text>
                   <BiLinkExternal />
-                </HStack>
+                </HStack> */}
               </LinkOverlay>
             </Box>
           </Box>
@@ -257,7 +257,7 @@ const DetailNFT: React.FC = () => {
               <AccordionItem>
                 <h2>
                   <AccordionButton>
-                    <Box flex="1" textAlign="left">
+                    <Box flex="1" textAlign="left" color="blue.400" fontSize={20}>
                       Details
                     </Box>
                     <AccordionIcon />
@@ -285,7 +285,7 @@ const DetailNFT: React.FC = () => {
           <Flex direction={'column'}>
             <Box>
               <Heading as="h2" color="blue.400">
-                {metadata?.name} #{NFTPrizeTokenId.tokenId}
+                NFT Cats  ID:{NFTPrizeTokenId.tokenId}
               </Heading>
               <Box onClick={handleCopyToClipboard} className="v-d-box-little-text">
                 <HStack>
@@ -300,6 +300,8 @@ const DetailNFT: React.FC = () => {
                   <Box>
                     <Center>The Winner is</Center>
                     <Center fontSize={'14px'}>{nftOwner.address}</Center>
+                    <Center fontSize={'15px'} color="blue.400"> Note: NFT will automatically pass to the winner when the nft owner completes the draw. </Center>
+                    <Center fontSize={'15px'} color="blue.400"> It will take a few minutes </Center>
                   </Box>
                 ) : state === 'None' ? (
                   <Box>--:--:--:--</Box>
@@ -327,7 +329,7 @@ const DetailNFT: React.FC = () => {
               <Center>
                 {(state === 'End' || state === 'Over') && (
                   <>
-                    <Grid gridTemplateColumns={'repeat(2, minmax(190px, 230px ))'} gridGap={'1rem'} width="fit-content">
+                    <Grid gridTemplateColumns={'repeat(1, minmax(190px, 230px ))'} gridGap={'1rem'} width="fit-content">
                       {isPoolOwner && (
                         <>
                           {isDrawable && !(state === 'Over') && (
@@ -402,7 +404,7 @@ const DetailNFT: React.FC = () => {
                             <Button colorScheme="blue" size="lg">
                               {state === 'Wait'
                                 ? 'Please wait.'
-                                : state === 'End'
+                                 :state === 'End'
                                 ? `Time ended`
                                 : state === 'Over'
                                 ? 'Lottery is over'
@@ -410,6 +412,7 @@ const DetailNFT: React.FC = () => {
                                 ? 'Sold out'
                                 : undefined}{' '}
                               {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0}
+                              
                             </Button>
                           )}
                         </>
@@ -450,7 +453,7 @@ const DetailNFT: React.FC = () => {
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
-                      <Box flex="1" textAlign="left">
+                      <Box flex="1" textAlign="left" color="blue.400" fontSize={20}>
                         Description
                       </Box>
                       <AccordionIcon />

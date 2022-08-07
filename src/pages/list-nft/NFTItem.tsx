@@ -92,7 +92,7 @@ const NFTItem: React.FC<NFTItemProps> = ({ poolInfo, children }) => {
           <Box className="l-i-nft-box-padding">
             <Flex direction={'column'}>
               <Heading as="h2" className="l-i-title">
-                {metadata?.name}
+                NFT Cats {metadata?.name}
               </Heading>
               <Box fontWeight={700} marginTop="0.5rem">
                 {state === 'Wait' || state === 'Open' ? (
