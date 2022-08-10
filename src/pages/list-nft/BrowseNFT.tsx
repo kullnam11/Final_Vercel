@@ -11,7 +11,7 @@ export interface BrowseNFTProps {
 const BrowseNFT: React.FC<BrowseNFTProps> = ({ children }) => {
   const { allPool = [], fetch } = useGetAllPool();
 
-  // console.log('allPool', allPool);
+ console.log('allPool', allPool);
 
   return (
     <>
