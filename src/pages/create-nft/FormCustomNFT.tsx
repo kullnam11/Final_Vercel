@@ -261,7 +261,9 @@ const FormCustomNFT: React.FC<{ selected?: { address: string; tokenId: string } 
           }
         );
         console.log('create success', txResult);
-        navigate('/list-lottery');
+        setTimeout(function(){
+          navigate('/list-lottery');
+      }, 3000);
       }
     } catch (error) {
       console.error(error);
@@ -442,6 +444,10 @@ const FormCustomNFT: React.FC<{ selected?: { address: string; tokenId: string } 
                   <Button colorScheme={'blue'} onClick={handleCreateLottery} type="submit" disabled={disableButton}>
                     Transfer and Create Lottery {isSending && <LoadingSVG />}
                   </Button>
+                  {approve.state.status !== 'None' && <Text color="red.300">Approve: {approve.state.status}</Text>}
+                  {transferNft.state.status !== 'None' && <Text color="red.300">Transfer: {transferNft.state.status}</Text>}
+                  {createNFTLotteryPool.state.status !== 'None' && <Text color="red.300">Create Lottery: {createNFTLotteryPool.state.status}</Text>}
+          
                   {isSending && status}
                 </HStack>
               </FormControl>

@@ -91,7 +91,7 @@ const DetailNFT: React.FC = () => {
   const isPoolOwner = account === poolOwner.address;
   const isDrawable = (ticketSold.amount ?? 0) >= (minSell.amount ?? 0);
   const isNotRefundedNFTYet = nftOwner.address === poolAddress;
-
+ 
   console.log(startDate.timestamp, endDate.timestamp);
 
   useEffect(() => {
@@ -343,14 +343,17 @@ const DetailNFT: React.FC = () => {
                                 Draw the Lottery {isDrawingLottery && <LoadingSVG />}
                               </Button>
                             </>
+                            
                           )}
 
                           {state === 'Over' && (
                             <Button colorScheme="blue" size="lg" onClick={handleClaimToken} disabled={isClaiming}>
                               Claim BSC {isClaiming && <LoadingSVG />}
+                              
                             </Button>
+                               
                           )}
-
+                          {claimToken.state.status !== 'None' && <Text color="red.300"> Claim: {claimToken.state.status}</Text>}  
                           {isNotRefundedNFTYet && !isDrawable && (
                             <Button
                               colorScheme="blue"
@@ -401,7 +404,7 @@ const DetailNFT: React.FC = () => {
                               </Button>
                             </>
                           ) : (
-                            <Button colorScheme="blue" size="lg">
+                            <Button colorScheme="blue" size="lg"  >
                               {state === 'Wait'
                                 ? 'Please wait.'
                                  :state === 'End'
@@ -433,9 +436,12 @@ const DetailNFT: React.FC = () => {
                               disabled={isSending}
                               paddingX={'0.3125rem'}
                               minWidth={'8.125rem'}
+                              
                             >
                               Buy now {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0} {isSending && <LoadingSVG />}
                             </Button>
+                            
+                            {buyTickets.state.status !== 'None' && <Text color="red.300">Buy Ticket: {buyTickets.state.status}</Text>}
                           </FormControl>
                         </>
                       )}
