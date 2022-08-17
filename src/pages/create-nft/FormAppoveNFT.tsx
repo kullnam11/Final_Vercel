@@ -4,6 +4,7 @@ import { formatUnits, parseEther, parseUnits } from 'ethers/lib/utils';
 import React, { ChangeEvent, useState } from 'react';
 import { LINK, LOTTERY_FACTORY } from '../../address';
 import { LoadingSVG } from '../../assets/Loading';
+import { isNumeric } from '../../utils/number';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
 import Input from '../../components/Input';
@@ -37,7 +38,13 @@ const FormApproveNFT: React.FC = () => {
     } finally {
       setSending(false);
     }
+   
   };
+  const approveVal = !amount
+  ? ''
+  : !isNumeric(amount)
+  ? 'Must be a number'
+  : '';
   return (
     <>
       <Box>
@@ -57,7 +64,7 @@ const FormApproveNFT: React.FC = () => {
             <Box paddingTop={'0.5rem'}>
               <FormControl>
                 <Box>
-                  <Input name="amount" label="Amout" type="text" value={amount} onChange={handleAmountChange} />
+                  <Input name="amount" label="Amout" type="text" value={amount} helperText={approveVal} onChange={handleAmountChange} />
                 </Box>
                 <Box>
                   <Text>Your LINK Balance: {tokenLinkBalance}</Text>

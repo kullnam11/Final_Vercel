@@ -4,6 +4,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  AlertDialogCloseButton,
   Box,
   Button,
   Center,
@@ -156,7 +157,7 @@ const DetailNFT: React.FC = () => {
   const handleAmountToBuyChange = (elm: ChangeEvent<HTMLInputElement>) => {
     setAmountToBuy(elm.target.value);
   };
-
+ 
   const handleDrawLottery = async () => {
     setDrawingLottery(true);
     try {
@@ -229,8 +230,8 @@ const DetailNFT: React.FC = () => {
     poolOwner.fetch();
   };
 
-  // console.log('data', 'start date', startDate.timestamp, 'end date', endDate.timestamp);
-  // console.log('data', nftOwner);
+  console.log('data', 'start date', startDate.timestamp, 'end date', endDate.timestamp);
+  console.log('data', nftOwner);
 
   return (
     <>
@@ -354,6 +355,7 @@ const DetailNFT: React.FC = () => {
                                
                           )}
                           {claimToken.state.status !== 'None' && <Text color="red.300"> Claim: {claimToken.state.status}</Text>}  
+                          
                           {isNotRefundedNFTYet && !isDrawable && (
                             <Button
                               colorScheme="blue"
@@ -414,9 +416,12 @@ const DetailNFT: React.FC = () => {
                                 : soldOut
                                 ? 'Sold out'
                                 : undefined}{' '}
+                               
                               {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0}
                               
                             </Button>
+                            
+
                           )}
                         </>
                       ) : (
@@ -434,13 +439,14 @@ const DetailNFT: React.FC = () => {
                               colorScheme="blue"
                               size="lg"
                               disabled={isSending}
+                              
                               paddingX={'0.3125rem'}
                               minWidth={'8.125rem'}
                               
                             >
                               Buy now {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0} {isSending && <LoadingSVG />}
+                             
                             </Button>
-                            
                             {buyTickets.state.status !== 'None' && <Text color="red.300">Buy Ticket: {buyTickets.state.status}</Text>}
                           </FormControl>
                         </>
