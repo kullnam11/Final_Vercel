@@ -300,7 +300,7 @@ const DetailNFT: React.FC = () => {
                 {poolOver.isOver ? (
                   <Box>
                     <Center>The Winner is</Center>
-                    <Center fontSize={'14px'}>{nftOwner.address}</Center>
+                    <Center className="v-d-metadata-value" fontSize={'14px'}>{nftOwner.address}</Center>
                     <Center fontSize={'15px'} color="blue.400"> Note: NFT will automatically pass to the winner when the nft owner completes the draw. </Center>
                     <Center fontSize={'15px'} color="blue.400"> It will take a few minutes </Center>
                   </Box>
@@ -398,15 +398,16 @@ const DetailNFT: React.FC = () => {
                     <Box>
                       {state !== 'Open' ? (
                         <>
-                          {isNotRefundedNFTYet && !isDrawable && state === 'End' && (ticketBalance.amount ?? 0) > 0 ? (
+                          {isNotRefundedNFTYet && !isDrawable &&  state === 'End' && (ticketBalance.amount ?? 0) > 0 ? (
                             <>
                               <Button colorScheme="blue" size="lg" onClick={handleGetRefund} disabled={isClaiming}>
                                 Get Refund {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0}{' '}
                                 {isWithdrawing && <LoadingSVG />}
                               </Button>
+                              {getRefund.state.status !== 'None' && <Text color="red.300"> Claim: {getRefund.state.status}</Text>}  
                             </>
                           ) : (
-                            <Button colorScheme="blue" size="lg"  >
+                            <Button disabled colorScheme="blue" size="lg"  >
                               {state === 'Wait'
                                 ? 'Please wait.'
                                  :state === 'End'
@@ -417,7 +418,7 @@ const DetailNFT: React.FC = () => {
                                 ? 'Sold out'
                                 : undefined}{' '}
                                
-                              {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0}
+                              {/* {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0} */}
                               
                             </Button>
                             
