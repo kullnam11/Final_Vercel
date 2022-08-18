@@ -348,7 +348,7 @@ const DetailNFT: React.FC = () => {
                           )}
 
                           {state === 'Over' && (
-                            <Button colorScheme="blue" size="lg" onClick={handleClaimToken} disabled={isClaiming}>
+                            <Button className="v-d-metadata-value" colorScheme="blue" size="lg" onClick={handleClaimToken} disabled={isClaiming}>
                               Claim BSC {isClaiming && <LoadingSVG />}
                               
                             </Button>
