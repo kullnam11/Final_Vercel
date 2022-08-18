@@ -398,7 +398,7 @@ const DetailNFT: React.FC = () => {
                     <Box>
                       {state !== 'Open' ? (
                         <>
-                          {state === 'End' && (ticketBalance.amount ?? 0) > 0 ? (
+                          {isNotRefundedNFTYet && !isDrawable && state === 'End' && (ticketBalance.amount ?? 0) > 0 ? (
                             <>
                               <Button colorScheme="blue" size="lg" onClick={handleGetRefund} disabled={isClaiming}>
                                 Get Refund {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0}{' '}
