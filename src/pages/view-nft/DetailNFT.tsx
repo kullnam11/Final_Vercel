@@ -93,6 +93,7 @@ const DetailNFT: React.FC = () => {
   const isPoolOwner = account === poolOwner.address;
   const isDrawable = (ticketSold.amount ?? 0) >= (minSell.amount ?? 0);
   const isNotRefundedNFTYet = nftOwner.address === poolAddress;
+  const isNotClaimBSCYet = true;
  
   console.log(startDate.timestamp, endDate.timestamp);
 
@@ -442,7 +443,7 @@ const DetailNFT: React.FC = () => {
                               onClick={handleBuyTicket}
                               colorScheme="blue"
                               size="lg"
-                              disabled={runOut && isSending}
+                              disabled={runOut|| isSending}
                               paddingX={'0.3125rem'}
                               minWidth={'8.125rem'}
                               
