@@ -301,7 +301,7 @@ const DetailNFT: React.FC = () => {
                   <Box>
                     <Center>The Winner is</Center>
                     <Center className="v-d-metadata-value" fontSize={'14px'}>{nftOwner.address}</Center>
-                    <Center fontSize={'15px'} color="blue.400"> Note: NFT will automatically pass to the winner when the nft owner completes the draw. </Center>
+                    <Center fontSize={'15px'} color="blue.400"> Note: NFT will automatically transfer to the winner when the nft owner completes the draw. </Center>
                     <Center fontSize={'15px'} color="blue.400"> It will take a few minutes </Center>
                   </Box>
                 ) : state === 'None' ? (
