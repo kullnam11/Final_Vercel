@@ -89,6 +89,7 @@ const DetailNFT: React.FC = () => {
   const price = formatEther(ticketPrice.bigPrice);
   const remaining = (maxToSell.amount ?? 0) - (ticketSold.amount ?? 0) ?? 0;
   const soldOut = remaining === 0;
+  const runOut = ticketBalance.amount ===  maxToHold.amount;
   const isPoolOwner = account === poolOwner.address;
   const isDrawable = (ticketSold.amount ?? 0) >= (minSell.amount ?? 0);
   const isNotRefundedNFTYet = nftOwner.address === poolAddress;
@@ -343,15 +344,16 @@ const DetailNFT: React.FC = () => {
                               >
                                 Draw the Lottery {isDrawingLottery && <LoadingSVG />}
                               </Button>
+                              {/* {isDrawingLottery.state.status !== 'None' && <Text color="red.300"> Claim: {.state.status}</Text>}   */}
                             </>
-                            
+                           
                           )}
 
-                          {state === 'Over' && (
+                          { state === 'Over' && (
                             <Button className="v-d-metadata-value" colorScheme="blue" size="lg" onClick={handleClaimToken} disabled={isClaiming}>
-                              Claim BSC {isClaiming && <LoadingSVG />}
-                              
+                              Claim BSC {isClaiming && <LoadingSVG />}                              
                             </Button>
+                           
                                
                           )}
                           {claimToken.state.status !== 'None' && <Text color="red.300"> Claim: {claimToken.state.status}</Text>}  
@@ -418,11 +420,12 @@ const DetailNFT: React.FC = () => {
                                 ? 'Sold out'
                                 : undefined}{' '}
                                
-                              {/* {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0} */}
+                              {ticketBalance.amount ?? 0}/{maxToHold.amount ?? 0}
                               
                             </Button>
                             
 
+                          
                           )}
                         </>
                       ) : (
@@ -439,8 +442,7 @@ const DetailNFT: React.FC = () => {
                               onClick={handleBuyTicket}
                               colorScheme="blue"
                               size="lg"
-                              disabled={isSending}
-                              
+                              disabled={runOut && isSending}
                               paddingX={'0.3125rem'}
                               minWidth={'8.125rem'}
                               
